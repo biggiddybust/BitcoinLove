@@ -1,0 +1,28 @@
+noinst_PROGRAMS += \
+  bitcoinlove/GenerateParams \
+  bitcoinlove/CreateJoinSplit
+
+# tool for generating our public parameters
+bitcoinlove_GenerateParams_SOURCES = bitcoinlove/GenerateParams.cpp
+bitcoinlove_GenerateParams_CPPFLAGS = $(AM_CPPFLAGS)
+bitcoinlove_GenerateParams_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+bitcoinlove_GenerateParams_LDADD = \
+  $(BOOST_LIBS) \
+  $(LIBBLVCASH) \
+  $(LIBSNARK) \
+  $(LIBBITCOIN_UTIL) \
+  $(LIBBITCOIN_CRYPTO) \
+  $(LIBBLVCASH_LIBS)
+
+# tool for profiling the creation of joinsplits
+bitcoinlove_CreateJoinSplit_SOURCES = bitcoinlove/CreateJoinSplit.cpp
+bitcoinlove_CreateJoinSplit_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+bitcoinlove_CreateJoinSplit_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+bitcoinlove_CreateJoinSplit_LDADD = \
+  $(LIBBITCOIN_COMMON) \
+  $(LIBBLVCASH) \
+  $(LIBSNARK) \
+  $(LIBBITCOIN_UTIL) \
+  $(LIBBITCOIN_CRYPTO) \
+  $(BOOST_LIBS) \
+  $(LIBBLVCASH_LIBS)
